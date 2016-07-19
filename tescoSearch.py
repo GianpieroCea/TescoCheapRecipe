@@ -10,10 +10,15 @@
 
 
 import httplib, urllib, base64, json
+import ConfigParser
 
 class tescoSearch():
     # constructor for the search object
     def __init__(self, query,offset = 0, limit = 10):
+	config = ConfigParser.RawConfigParser()
+	config.read('apikey.cfg') 
+	
+	self.API_KEY = config.get('Keys','API_TESCO')        
         self.query = query
         self.offset = offset
         self.limit = limit
@@ -29,7 +34,7 @@ class tescoSearch():
         
         headers = {
             # Request headers
-            'Ocp-Apim-Subscription-Key': 'e780275a31f64ce5bd6e057516bf2968'
+            'Ocp-Apim-Subscription-Key': self.API_KEY
         }    
         
         try:
@@ -57,20 +62,10 @@ class tescoSearch():
 
 
         
-    
-    
-   
-  
-        
 
-    
-def connect():
-    return 
 
 def main():
-    search = tescoSearch('mustard', 0,10)
-    print(type(search.getResults()))
-    
+   return
         
 if __name__ == '__main__':
     main()

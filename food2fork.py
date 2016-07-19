@@ -4,8 +4,12 @@ import json
 from functools import partial
 
 import random
+import ConfigParser
  
  # Code adapted from food2fork Github
+ 
+
+
 
 class food2fork():
 	'''
@@ -17,7 +21,12 @@ class food2fork():
 	'''
 
 	def __init__(self, debug=False):
-		self.apiKey = '1a2a2d741db9a9c3c4bffe2de393d3ee'
+		config = ConfigParser.RawConfigParser()
+		config.read('apikey.cfg') 
+		
+		API_KEY = config.get('Keys','API_F2F')
+		
+		self.apiKey = API_KEY
 
 		self.debugMode = debug
 
