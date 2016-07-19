@@ -1,0 +1,38 @@
+#tabs { font-family: Verdana, sans-serif; font-size: 14px; }
+#tabs li {
+    list-style: none;
+    float: left;
+    width: 150px;
+    height: 35px;
+    margin: 0 5px;
+}
+    #tabs li a {
+        background-color: #dedede;
+        color: #222;
+        font-weight: bold;
+        text-decoration: none;
+        width: 150px;
+        height: 35px;
+        display: block;
+        float: left;
+        line-height: 35px;
+        text-align: center;
+    }
+        #tabs li a:hover,
+        #tabs li a:active { background-color: #ededed; }
+ 
+    div.content {
+        color: #222;
+        font-family: Verdana;
+        font-size: 12px;
+        background-color: #efefef;
+        padding: 25px;
+        width: 600px;
+        height: 350px;
+        line-height: 22px;
+    }
+ 
+    #container {
+        clear: both;
+        height: 400px; /* 350px + 25px (padding sx) + 25px (padding dx) */
+        overflow: hidden; }

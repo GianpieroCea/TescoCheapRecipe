@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <title>Find products</title>
+</head>
+<body>
+   <h1>TescoCheapRecipe</h1>
+<div>
+    <h2>Search Tesco products</h2>
+    
+       <form>
+ <input type="text" name="ingredients" placeholder="e.g: rice" />
+ <input type="submit" value="Submit" />
+</form>
+
+<ul>
+	{% for ingredient in tesco %}
+		<li>
+		
+			<dl>
+				 {% for key, value in ingredient.iteritems() %}
+					<dt><b>{{ key }}</b></dt>
+					<dd>{{ value }}</dd>
+				 {% endfor %}
+			</dl>
+		</li>
+	{% endfor %}
+</ul> 
+</div>
+
+<div>
+
+   <form>
+ <input type="text" name="ingredients" placeholder="e.g.:rice, chicken" />
+ <input type="submit" value="Submit" />
+</form>
+
+</div>
+</body>
+</html>
+
