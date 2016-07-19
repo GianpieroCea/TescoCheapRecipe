@@ -15,6 +15,16 @@ def index():
     else:
         return render_template('index.html')
     
+    
+    if (request.args.get("ingredients_rec")) is not None: 
+            query = (request.args.get("ingredients_rec")).lower()
+            query = urllib.quote_plus(query)  #very important,yay!
+            f2f = food2fork().search(query)    
+            return render_template('index.html', tesco = tesco)
+        else:
+            return render_template('index.html')
+    
+    
 @app.route("/recipe/<id>")
 def show_recipe(id):
     f2f = food2fork()
