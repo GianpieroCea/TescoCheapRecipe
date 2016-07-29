@@ -1,5 +1,5 @@
 # TescoCheapRecipe
-An flask based mashup that uses Tesco API (to find ingredients and prices) and food2fork API (to find recipes)
+A Flask-based  API mashup webapp that uses Tesco API (to find ingredients and prices) and food2fork API (to find recipes)
 
 
 The end goal for this web app is to give a way to find cheap meals from Tesco (UK groceries store). Ideally one of the feature would be to search for ingredients 
@@ -42,7 +42,13 @@ Finally on your browser navigate to
 http://127.0.0.1:5000/
 
 ## Todo List
-- []Add price function to get the "cost" of a recipe
-- []Allow search for cheapest recipe
-- []Clean up code / add WTForms
-- []Create nice CSS style
+- [ ] Add price function to get the "cost" of a recipe
+- [ ] Allow search for cheapest recipe
+- [ ] Clean up code / add WTForms
+- [ ] Create nice CSS style
+
+At the moment can only:
+- [x] Search Tesco database
+- [x] Generate a random recipe
+- [x] Find a recipe by text
+
