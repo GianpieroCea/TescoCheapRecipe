@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <title>Show ingredients</title>
+</head>
+<body>
+
+<h2> Tesco product search </h2>
+<h3> Showing results for "{{query}}" </h3>
+<ul>
+	{% for ingredient in tesco %}
+		<li>
+		
+			<dl>
+				 {% for key, value in ingredient.iteritems() %}
+					<dt><b>{{ key }}</b></dt>
+					<dd>{{ value }}</dd>
+				 {% endfor %}
+			</dl>
+		</li>
+	{% endfor %}
+</ul> 
+<a href = "..">Home</a>
+</body>
+</html>

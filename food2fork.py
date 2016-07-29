@@ -127,35 +127,60 @@ class food2fork():
 			return None
 		
 #######################################################################
-		
-	def getRandomRecipe(self):
-		try:
-			
-			if self.getTrending() is not None:
-				recipes = self.getTrending()['recipes']	
-				random.shuffle(recipes)
-				return recipes[0]
-			else:
-				if self.getTopRated() is not None:
+	#the if else doesn't work:(
+	def getRandomRecipe(self, query = None):
+		if query == None:
+			try:
+				
+				if self.getTrending() is not None:
 					recipes = self.getTrending()['recipes']	
 					random.shuffle(recipes)
-					return recipes[0]					
-				
-				
-		except Exception as inst:
-			if(self.debugMode): print inst
-
-			return None		
+					return recipes[0]
+				else:
+					if self.getTopRated() is not None:
+						recipes = self.getTrending()['recipes']	
+						random.shuffle(recipes)
+						return recipes[0]					
+					
+					
+			except Exception as inst:
+				if(self.debugMode): print inst
 	
-	def getRandomRecipeID(self):
-		try:
+				return None	
+		else:
+			try:
+				f2f = self.search(query) 
+				if f2f is not None:
+					 recipes = f2f['recipes']
+					 random.shuffle(recipes)
+					 return recipes[0]
+				 
+			except Exception as inst:
+				if(self.debugMode): print inst
+				return None
+				
+	
+	def getRandomRecipeID(self, query = None):
+		if query == None:
+			try:
+				
+				recipe = self.getRandomRecipe()
+				return recipe['recipe_id']
+			except Exception as inst:
+				if(self.debugMode): print inst
+	
+				return None	
+		else:
+			try:
+				recipe = self.getRandomRecipe(query)
+				return recipe['recipe_id']
+			except Exception as inst:
+				if(self.debugMode): print inst
+				return None
 			
-			recipe = self.getRandomRecipe()
-			return recipe['recipe_id']
-		except Exception as inst:
-			if(self.debugMode): print inst
-
-			return None		
+		
+	
+		
+		
 	
 	
-#1a2a2d741db9a9c3c4bffe2de393d3ee pri

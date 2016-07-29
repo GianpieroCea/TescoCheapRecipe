@@ -5,7 +5,9 @@
     <title>Find products</title>
 </head>
 <body>
+<nav>
    <h1>TescoCheapRecipe</h1>
+</nav>
 <div>
     <h2>Search Tesco products</h2>
     
@@ -14,36 +16,26 @@
  <input type="submit" value="Submit" />
 </form>
 
-<ul>
-	{% for ingredient in tesco %}
-		<li>
-		
-			<dl>
-				 {% for key, value in ingredient.iteritems() %}
-					<dt><b>{{ key }}</b></dt>
-					<dd>{{ value }}</dd>
-				 {% endfor %}
-			</dl>
-		</li>
-	{% endfor %}
-</ul> 
+
 </div>
 <p></p>
 <div>
-	<h2>Find a recipe from ingredients</h2>
+
+	<h2>Find a random recipe</h2>
    <form>
- <input type="text" name="ingredients_rec" placeholder="e.g.:rice, chicken" />
+ <input type="submit" value="Go" name ="random" />
+</form>
+
+</div>
+<p></p>
+<div>
+    <h2>Search recipe by ingredients</h2>
+    
+       <form>
+ <input type="text" name="ingredients_rec" placeholder="e.g: rice,chicken" />
  <input type="submit" value="Submit" />
 </form>
 
-</div>
-
-<p></p>
-<div>
-	<h2>Find a random recipe</h2>
-   <form>
- <input type="submit" value="Go!" name ="random" />
-</form>
 
 </div>
 </body>
