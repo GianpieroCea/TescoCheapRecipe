@@ -127,6 +127,7 @@ class food2fork():
 			return None
 		
 #######################################################################
+	#method added 	
 	#the if else doesn't work:(
 	def getRandomRecipe(self, query = None):
 		if query == None:

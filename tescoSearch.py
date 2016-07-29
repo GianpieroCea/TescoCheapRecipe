@@ -6,7 +6,7 @@
 # are the query for the search and the offset(starting point) and limit
 # (number of results to show)
 #
-# AUTHOR: s
+# AUTHOR: Gianpiero Cea
 
 
 import httplib, urllib, base64, json
