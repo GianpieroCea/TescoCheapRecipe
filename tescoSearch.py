@@ -2,55 +2,60 @@
 
 # This module uses Tesco API to perform various useful operation on the 
 # database.
-# The class tescoSearch abstract a search on the database. Its paramaters
+# The class tescoSearch abstracts a search on the database. Its paramaters
 # are the query for the search and the offset(starting point) and limit
 # (number of results to show)
 #
 # AUTHOR: Gianpiero Cea
 
 
-import httplib, urllib, base64, json
-import ConfigParser
+import  json
+import ConfigParser, os
+import requests
 
 class tescoSearch():
     # constructor for the search object
     def __init__(self, query,offset = 0, limit = 10):
+	#config object to read the apikey from config file
 	config = ConfigParser.RawConfigParser()
-	config.read('apikey.cfg') 
 	
+	## if this doesn't work ,hack: write extended path 
+	abspath = os.path.abspath('apikey.cfg')	
+	config.read(abspath)
+	
+	# here we set all the things we need
 	self.API_KEY = config.get('Keys','API_TESCO')        
         self.query = query
         self.offset = offset
         self.limit = limit
-        self.data = self.getData()
-      
-    # creates the url we call to make the search    
-    def getUrl(self):
-        return "/grocery/products/?query={q}&offset={o}&limit={l}&%s".format(q=self.query, o = self.offset, l = self.limit)
-    
-    # returns the raw JSON data associated with the search 
+        self.data= self.getData()
+	
+
+	
     def getData(self):
-        url = self.getUrl()
-        
-        headers = {
-            # Request headers
-            'Ocp-Apim-Subscription-Key': self.API_KEY
-        }    
-        
-        try:
-            conn = httplib.HTTPSConnection('dev.tescolabs.com')
-            conn.request("GET", url , "", headers)
-            response = conn.getresponse()
-            data = response.read()
-            conn.close()
-        except Exception as e:
-            print("[Errno {0}] {1}".format(e.errno, e.strerror))
-            
-        return data  #return data as  <string> ,maybe change
+	#the parameters of hour search
+	params = {'query'  : self.query,
+	        'offset' : self. offset,
+	        'limit'  : self.limit
+	    }
+	
+	#set the headers for apikey auth:
+	headers = {
+		    # Request headers
+		    'Ocp-Apim-Subscription-Key': self.API_KEY
+		}    	
+	
+	#here is the core! we use the nice requests module
+	r = requests.get('https://dev.tescolabs.com/grocery/products/', params = params, headers = headers)
+	
+	data = r.text
+	##maybe add try-exception for error 
+	return data
     
     # returns a dictionary for all products that match the search
     def getResults(self):
         data = self.getData()
+	##maybe replace with request json()
         dic_data = json.loads(data)
         return dic_data['uk']['ghs']['products']['results']# <dict>
     
@@ -60,12 +65,3 @@ class tescoSearch():
         cheap_res = sorted(res, key= lambda k:k['price'])
         return cheap_res
 
-
-        
-
-
-def main():
-   return
-        
-if __name__ == '__main__':
-    main()
